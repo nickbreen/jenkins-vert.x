@@ -1,0 +1,18 @@
+module(
+    name = "bfb",
+    version = "0.0.0",
+)
+
+bazel_dep(name = "rules_jvm_external", version = "6.1")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        "io.vertx:vertx-core:4.5.8",
+        "org.slf4j:slf4j-api:2.0.13",
+        "org.slf4j:slf4j-simple:2.0.13",
+    ],
+    #lock_file = "//:maven_install.json",
+    fetch_sources = True,
+)
+use_repo(maven, "maven")

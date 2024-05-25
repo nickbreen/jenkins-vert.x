@@ -1,0 +1,17 @@
+load("@rules_jvm_external//:defs.bzl", "artifact")
+
+java_binary(
+    name = "bfb",
+    srcs = glob(["src/main/java/**"]),
+    jvm_flags = [
+        "-Dorg.slf4j.simpleLogger.log.kiwi.breen.jenkins=debug",
+    ],
+    main_class = "kiwi.breen.jenkins.Main",
+    runtime_deps = [
+        artifact("org.slf4j:slf4j-simple"),
+    ],
+    deps = [
+        artifact("org.slf4j:slf4j-api"),
+        artifact("io.vertx:vertx-core"),
+    ],
+)
